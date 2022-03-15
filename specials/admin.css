@@ -1,0 +1,15 @@
+/* Specials Options Admin Page */
+.admin-options {
+	margin-top: 3rem;
+}
+
+.dashicons-format-aside {
+	font-size: 2.5rem;
+}
+	input#westword_ad_image_path {
+  width: 60%;
+} 
+
+input#westword_ad_run_dates {
+  width: 12%;
+}

@@ -7,4 +7,5 @@ node_modules/
 *.sql
 *.tar.gz
 *.zip
-spark.post-types.sublime
+spark-post-types.sublime-project
+spark.post-types.sublime-workspace
