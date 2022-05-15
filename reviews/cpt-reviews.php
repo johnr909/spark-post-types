@@ -1,5 +1,5 @@
 <?php
-/*Custom Post type start*/
+/* Custom Post type start */
 
 function post_type_reviews() {
 
@@ -44,6 +44,6 @@ function post_type_reviews() {
 
 	register_post_type('reviews', $args);
 }
-/*Custom Post type end*/
+/* Custom Post type end */
 
 add_action('init', 'post_type_reviews');

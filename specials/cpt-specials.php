@@ -1,5 +1,5 @@
 <?php
-/*Custom Post type start*/
+/* Custom Post type start */
 
 function post_type_specials() {
 
@@ -41,6 +41,6 @@ function post_type_specials() {
 
 	register_post_type('specials', $args);
 }
-/*Custom Post type end*/
+/* Custom Post type end */
 
 add_action('init', 'post_type_specials');
