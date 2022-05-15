@@ -16,7 +16,7 @@
     $specials3 = get_post_meta($post->ID, 'specials3', true);
 ?>
     <p class="field">
-        <label for="specialsTitle"><?php _e('Specials Title', 'wp-bootstrap-starter'); ?></label>
+        <label for="specialsTitle"><?php _e('Specials Title', 'spark-post-types'); ?></label>
         <input id="specialsTitle" 
                type="text" 
                name="specialsTitle"
@@ -24,18 +24,11 @@
     </p>
 
     <p class="field">
-        <label for="specialsDescription"><?php _e('Specials Description', 'wp-bootstrap-starter'); ?></label>
+        <label for="specialsDescription"><?php _e('Specials Description', 'spark-post-types'); ?></label>
         <input id="specialsDescription"  
                   name="specialsDescription"
                   type="text"
                   value="<?php echo esc_attr($specials_description); ?>">
     </p>
 
- <!--    <p class="field">
-        <label for="specials3">Specials 3</label>
-        <input type="text" 
-               name="specials3" 
-               id="specials3"
-               value="<?php //echo esc_attr($specials3); ?>">
-    </p> -->
 </div><!-- /.box -->

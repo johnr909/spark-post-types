@@ -16,7 +16,7 @@ class SpecialsOptions {
         $page_title = 'Specials Options Page';
         $menu_title = 'Specials Options Page';
         $capability = 'manage_options';
-        $slug = 'smashing_fields';
+        $slug = 'specials_options_fields';
         $callback = array( $this, 'specials_settings_page_content' );
 
         add_submenu_page( 'edit.php?post_type=specials', $page_title, $menu_title, $capability, $slug, 
@@ -31,8 +31,8 @@ class SpecialsOptions {
             } ?>
     		<form method="POST" action="options.php">
                 <?php
-                    settings_fields( 'smashing_fields' );
-                    do_settings_sections( 'smashing_fields' );
+                    settings_fields( 'specials_options_fields' );
+                    do_settings_sections( 'specials_options_fields' );
                     submit_button();
                 ?>
     		</form>
@@ -46,7 +46,7 @@ class SpecialsOptions {
     }
 
     public function setup_sections() {
-        add_settings_section( 'section_one', '<span class="dashicons dashicons-format-aside"></span>', array( $this, 'section_callback' ), 'smashing_fields' );
+        add_settings_section( 'section_one', '<span class="dashicons dashicons-format-aside"></span>', array( $this, 'section_callback' ), 'specials_options_fields' );
     }
 
     public function section_callback( $arguments ) {
@@ -82,8 +82,8 @@ class SpecialsOptions {
         );
 
     	foreach( $fields as $field ){
-        	add_settings_field( $field['uid'], $field['label'], array( $this, 'field_callback' ), 'smashing_fields', $field['section'], $field );
-            register_setting( 'smashing_fields', $field['uid'] );
+        	add_settings_field( $field['uid'], $field['label'], array( $this, 'field_callback' ), 'specials_options_fields', $field['section'], $field );
+            register_setting( 'specials_options_fields', $field['uid'] );
     	}
     }
 
