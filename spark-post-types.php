@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name:     Spark Post Types
- * Plugin URI:      PLUGIN SITE HERE
- * Description:     PLUGIN DESCRIPTION HERE
- * Author:          YOUR NAME HERE
- * Author URI:      YOUR SITE HERE
+ * Plugin URI:      
+ * Description:     The home of Custom Post Types and associated fields/data for Spark.
+ * Author:          johnr909
+ * Author URI:      https://sparkdispensary.com
  * Text Domain:     spark-post-types
  * Domain Path:     /languages
  * Version:         0.1.0
@@ -21,9 +21,9 @@ require $dir . '/spark-post-types/specials/cpt-specials.php';
 require $dir . '/spark-post-types/specials/custom-metabox-specials.php';
 require $dir . '/spark-post-types/specials/specials-options-page.php';
 
-// for styling the specials & vendor-card-420 options admin page
+// for styling the specials & vendor-card-420 options admin pages
 function admin_style() {
-  wp_enqueue_style('admin-styles', $dir.'/spark-post-types/css/admin.css');
+  wp_enqueue_style('admin-styles', plugin_dir_url(__FILE__) . 'css/admin.css');
 }
 
 add_action('admin_enqueue_scripts', 'admin_style');
