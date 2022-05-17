@@ -21,6 +21,10 @@ require $dir . '/spark-post-types/specials/cpt-specials.php';
 require $dir . '/spark-post-types/specials/custom-metabox-specials.php';
 require $dir . '/spark-post-types/specials/specials-options-page.php';
 
+
+require $dir . '/spark-post-types/dailydeals/cpt-dailydeals.php';
+require $dir . '/spark-post-types/dailydeals/custom-metabox-dailydeals.php';
+
 // for styling the specials & vendor-card-420 options admin pages
 function admin_style() {
   wp_enqueue_style('admin-styles', plugin_dir_url(__FILE__) . 'css/admin.css');
