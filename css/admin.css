@@ -6,10 +6,34 @@
 .dashicons-format-aside {
 	font-size: 2.5rem;
 }
-	input#westword_ad_image_path {
+
+input#westword_ad_image_path {
   width: 60%;
 } 
 
 input#westword_ad_run_dates {
   width: 12%;
+}
+
+/* Custom Data Fields for CPTs */
+.box {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 20px;
+}
+
+.field {
+  display: contents;
+}
+
+.fields-meta-box {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+}
+
+.custom-field-control {
+    display: contents;
 }
