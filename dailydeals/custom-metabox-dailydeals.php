@@ -52,6 +52,8 @@ function save_dailydeals_meta_box( $post_id ) {
         'dealTitle',
         'dealLeadOff',
         'dealDescriptionText',
+        'dealLeadOff2',
+        'dealDescriptionText2',
     ];
 
     // Run the update with sanitized $_POST data
