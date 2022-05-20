@@ -45,7 +45,7 @@ function save_review_meta_box( $post_id ) {
 	}
 
 	// Check if it's a revision
-    if ($parent_id = wp_is_post_revision( $post_id )) {
+    if ($parent_id = wp_is_post_revision( $post_id ) ) {
         $post_id = $parent_id;
     }
 
@@ -57,7 +57,7 @@ function save_review_meta_box( $post_id ) {
 
     // Run the update with sanitized $_POST data
     foreach ( $fields as $field ) {
-        if (array_key_exists( $field, $_POST )) {
+        if (array_key_exists( $field, $_POST ) ) {
             update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
         }
      }

@@ -81,8 +81,16 @@ class SpecialsOptions {
 
         );
 
-    	foreach( $fields as $field ){
-        	add_settings_field( $field['uid'], $field['label'], array( $this, 'field_callback' ), 'specials_options_fields', $field['section'], $field );
+    	foreach( $fields as $field ) {
+        	add_settings_field( 
+                $field['uid'], 
+                $field['label'], 
+                array( $this, 'field_callback' ), 
+                'specials_options_fields', 
+                $field['section'], 
+                $field 
+            );
+
             register_setting( 'specials_options_fields', $field['uid'] );
     	}
     }
@@ -91,7 +99,7 @@ class SpecialsOptions {
 
         $value = get_option( $arguments['uid'] );
 
-        if( ! $value ) {
+        if( !$value ) {
             $value = $arguments['default'];
         }
 
@@ -117,4 +125,5 @@ class SpecialsOptions {
     }
 
 }
+
 new SpecialsOptions();
