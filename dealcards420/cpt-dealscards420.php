@@ -1,42 +1,46 @@
 <?php
 /* Custom Post type start */
 
-function post_type_deals420card() {
+namespace sparkd;
 
-	$supports = array(
-		'title', // post title
-		'thumbnail', // featured images
-		'post-formats', // post formats
-	);
+if ( ! function_exists( 'post_type_deals420card' ) ) {
+	function post_type_deals420card() {
 
-	$labels = array(
-	'name' => _x( 'deals420cards', 'plural' ),
-	'singular_name' => _x( 'deal420card', 'singular' ),
-	'menu_name' => _x( 'Deal 420 Card', 'admin menu' ),
-	'name_admin_bar' => _x( 'Deal 420 Cards', 'admin bar' ),
-	'add_new' => _x( 'Add New', 'add new' ),
-	'add_new_item' => __( 'Add New Deal 420 Card' ),
-	'new_item' => __( 'New Deal 420 Cards' ),
-	'edit_item' => __( 'Edit Deal 420 Cards' ),
-	'view_item' => __( 'View Deal 420 Cards' ),
-	'all_items' => __( 'All Deal 420 Cards' ),
-	'search_items' => __( 'Search Deal 420 Cards' ),
-	'not_found' => __( 'No Deal 420 Cards found.' ),	
-	);
+		$supports = array(
+			'title', // post title
+			'thumbnail', // featured images
+			'post-formats', // post formats
+		);
 
-	$args = array(
-		'supports' => $supports,
-		'labels' => $labels,
-		'public' => true,
-		'query_var' => true,
-		'rewrite' => array( 'slug' => 'deal420cards' ),
-		'has_archive' => true,
-		'hierarchical' => false,
-		'menu_icon' => 'dashicons-money',
-	);
+		$labels = array(
+		'name' => _x( 'deals420cards', 'plural' ),
+		'singular_name' => _x( 'deal420card', 'singular' ),
+		'menu_name' => _x( 'Deal 420 Card', 'admin menu' ),
+		'name_admin_bar' => _x( 'Deal 420 Cards', 'admin bar' ),
+		'add_new' => _x( 'Add New', 'add new' ),
+		'add_new_item' => __( 'Add New Deal 420 Card' ),
+		'new_item' => __( 'New Deal 420 Cards' ),
+		'edit_item' => __( 'Edit Deal 420 Cards' ),
+		'view_item' => __( 'View Deal 420 Cards' ),
+		'all_items' => __( 'All Deal 420 Cards' ),
+		'search_items' => __( 'Search Deal 420 Cards' ),
+		'not_found' => __( 'No Deal 420 Cards found.' ),	
+		);
 
-	register_post_type( 'deals420cards', $args );
+		$args = array(
+			'supports' => $supports,
+			'labels' => $labels,
+			'public' => true,
+			'query_var' => true,
+			'rewrite' => array( 'slug' => 'deal420cards' ),
+			'has_archive' => true,
+			'hierarchical' => false,
+			'menu_icon' => 'dashicons-money',
+		);
+
+		register_post_type( 'deals420cards', $args );
+	}
 }
 /* Custom Post type end */
 
-add_action( 'init', 'post_type_deals420card' );
+add_action( 'init', '\sparkd\post_type_deals420card' );

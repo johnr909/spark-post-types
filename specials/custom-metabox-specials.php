@@ -2,6 +2,7 @@
 /**
  * Register the meta box
  */
+
 function register_specials_meta_boxes() {
     add_meta_box(
         'specials_data_metabox', 

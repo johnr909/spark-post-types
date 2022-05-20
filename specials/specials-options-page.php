@@ -1,5 +1,7 @@
 <?php
 /* Special Options Settings Page */
+namespace sparkd;
+
 class SpecialsOptions {
 
     public function __construct() {
@@ -126,4 +128,4 @@ class SpecialsOptions {
 
 }
 
-new SpecialsOptions();
+new \sparkd\SpecialsOptions();
