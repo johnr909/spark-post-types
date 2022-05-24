@@ -1,4 +1,7 @@
 <?php
+
+namespace  sparkd;
+
 /**
  * Register the meta box
  */
@@ -6,13 +9,13 @@ function register_vendorcard420_meta_boxes() {
     add_meta_box(
         'vendorcard420_data_metabox', 
         __( 'Vendor 420 Card Data'), 
-        'vendorcard420_display_callback', 
+        '\sparkd\vendorcard420_display_callback', 
         'vendor420cards',
         'normal', 'high'
     );
 }
 
-add_action( 'add_meta_boxes', 'register_vendorcard420_meta_boxes' );
+add_action( 'add_meta_boxes', '\sparkd\register_vendorcard420_meta_boxes' );
 
 /**
  * Meta box display callback
@@ -64,4 +67,4 @@ function save_vendorcard420_meta_box( $post_id ) {
      }
 }
 
-add_action( 'save_post', 'save_vendorcard420_meta_box' );
+add_action( 'save_post', '\sparkd\save_vendorcard420_meta_box' );

@@ -1,4 +1,7 @@
 <?php
+
+namespace sparkd;
+
 /**
  * Register the meta box
  */
@@ -6,12 +9,12 @@ function register_dealcard420_meta_boxes() {
     add_meta_box(
         'dealcard420_data_metabox', 
         __( 'Deal 420 Card Data'), 
-        'dealcard420_display_callback', 
+        '\sparkd\dealcard420_display_callback', 
         'deals420cards','normal', 'high'
     );
 }
 
-add_action( 'add_meta_boxes', 'register_dealcard420_meta_boxes' );
+add_action( 'add_meta_boxes', '\sparkd\register_dealcard420_meta_boxes' );
 
 /**
  * Meta box display callback
@@ -69,4 +72,4 @@ function save_dealcard420_meta_box( $post_id ) {
      }
 }
 
-add_action( 'save_post', 'save_dealcard420_meta_box' );
+add_action( 'save_post', '\sparkd\save_dealcard420_meta_box' );

@@ -1,4 +1,6 @@
 <?php
+
+namespace sparkd;
 /**
  * Register the meta box
  */
@@ -7,12 +9,12 @@ function register_specials_meta_boxes() {
     add_meta_box(
         'specials_data_metabox', 
         __( 'Specials Data'), 
-        'specials_display_callback', 
+        '\sparkd\specials_display_callback', 
         'specials','normal', 'high'
     );
 }
 
-add_action( 'add_meta_boxes', 'register_specials_meta_boxes' );
+add_action( 'add_meta_boxes', '\sparkd\register_specials_meta_boxes' );
 
 /**
  * Meta box display callback
@@ -64,4 +66,4 @@ function save_specials_meta_box( $post_id ) {
      }
 }
 
-add_action( 'save_post', 'save_specials_meta_box' );
+add_action( 'save_post', '\sparkd\save_specials_meta_box' );

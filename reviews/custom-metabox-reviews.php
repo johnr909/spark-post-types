@@ -1,4 +1,7 @@
 <?php
+
+namespace sparkd;
+
 /**
  * Register the meta box
  */
@@ -7,12 +10,12 @@ function register_review_meta_boxes() {
     add_meta_box(
         'reviewer_data_metabox', 
         __( 'Reviewer Data'), 
-        'review_display_callback', 
+        '\sparkd\review_display_callback', 
         'reviews','normal', 'high'
     );
 }
 
-add_action('add_meta_boxes', 'register_review_meta_boxes');
+add_action('add_meta_boxes', '\sparkd\register_review_meta_boxes');
 
 /**
  * Meta box display callback
@@ -64,4 +67,4 @@ function save_review_meta_box( $post_id ) {
      }
 }
 
-add_action( 'save_post', 'save_review_meta_box' );
+add_action( 'save_post', '\sparkd\save_review_meta_box' );
