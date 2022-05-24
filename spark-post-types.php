@@ -20,8 +20,8 @@ require $dir . '/spark-post-types/specials/custom-metabox-specials.php';
 require $dir . '/spark-post-types/specials/specials-options-page.php';
 
 // for styling the specials options & CPT admin pages
-function admin_style() {
+function admin_styles() {
   wp_enqueue_style('admin-styles', plugin_dir_url(__FILE__) . 'css/admin.css');
 }
 
-add_action('admin_enqueue_scripts', 'admin_style');
+add_action('admin_enqueue_scripts', 'admin_styles');
