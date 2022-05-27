@@ -1,5 +1,13 @@
 <?php
 
+$post_id;
+$post;
+
+$form; // str
+$nonce; // str
+$user_cap = 'edit_posts'; // some str
+$fields[];
+
 
 function display_callback( $post, $form, $nonce ) {
   include $form;
@@ -28,7 +36,7 @@ function current_user_can( $post_id ) {
 
 // return true if the nonce is verified
 function verify_meta_box( $nonce ) {
-  if ( !isset( $_POST[$none]) || !wp_verify_nonce( $_POST[$nonce], basename( __FILE__ ) ) ) {
+  if ( !isset( $_POST[$nonce]) || !wp_verify_nonce( $_POST[$nonce], basename( __FILE__ ) ) ) {
         return true;
     }
 }
