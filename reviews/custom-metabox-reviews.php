@@ -7,6 +7,18 @@ namespace sparkd;
  */
 
 include 'reviews-vars.php';
+  $form = 'custom-fields-review-form.php';
+  $nonce = 'review_meta_box_nonce';
+  $post_nonce = $_POST['review_meta_box_nonce'];
+  $user_cap = 'edit_posts';
+  $fields = [
+        'spark_reviewer',
+        'spark_review_status',
+        'spark_review_icon',
+    ];
+
+
+
 $path = plugin_dir_path(dirname( __FILE__ ));
 // echo $path;
 include $path . 'functions-meta-box.php';
@@ -44,7 +56,7 @@ function save_review_meta_box( $post_id ) {
     }
 
     // Check the user's permissions
-    if (!current_user_can( 'edit_post', $post_id ) ) {
+    if (!current_user_can( $user_cap, $post_id ) ) {
         return;
     }
 
@@ -73,3 +85,6 @@ function save_review_meta_box( $post_id ) {
 }
 
 add_action( 'save_post', '\sparkd\save_review_meta_box' );
+echo $form;
+var_dump($nonce);
+var_dump($fields);
