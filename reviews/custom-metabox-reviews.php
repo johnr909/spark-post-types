@@ -6,6 +6,11 @@ namespace sparkd;
  * Register the meta box
  */
 
+include 'reviews-vars.php';
+$path = plugin_dir_path(dirname( __FILE__ ));
+// echo $path;
+include $path . 'functions-meta-box.php';
+
 function register_review_meta_boxes() {
     add_meta_box(
         'reviewer_data_metabox', 
@@ -21,9 +26,9 @@ add_action('add_meta_boxes', '\sparkd\register_review_meta_boxes');
  * Meta box display callback
  * @param WP_Post $post Current post object
  */
-function review_display_callback($post) {
-    include 'custom-fields-review-form.php';
-    wp_nonce_field( basename( __FILE__ ), 'review_meta_box_nonce' );
+function display_callback($post) {
+    include $form;
+    wp_nonce_field( basename( __FILE__ ), $nonce );
 }
 
 
@@ -44,7 +49,7 @@ function save_review_meta_box( $post_id ) {
     }
 
     // Verify meta box nonce
-    if ( !isset( $_POST['review_meta_box_nonce']) || !wp_verify_nonce( $_POST['review_meta_box_nonce'], basename( __FILE__ ) ) ) {
+    if ( !isset( $post_nonce) || !wp_verify_nonce( $post_nonce, basename( __FILE__ ) ) ) {
         return;
     }
 
@@ -53,11 +58,11 @@ function save_review_meta_box( $post_id ) {
         $post_id = $parent_id;
     }
 
-    $fields = [
-        'spark_reviewer',
-        'spark_review_status',
-        'spark_review_icon',
-    ];
+    // $fields = [
+    //     'spark_reviewer',
+    //     'spark_review_status',
+    //     'spark_review_icon',
+    // ];
 
     // Run the update with sanitized $_POST data
     foreach ( $fields as $field ) {
