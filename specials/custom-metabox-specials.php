@@ -1,8 +1,5 @@
 <?php
 
-$path = plugin_dir_path(dirname( __FILE__ ));
-include $path . 'functions-meta-box.php';
-
 /**
  * Register the meta box
  */
@@ -26,7 +23,6 @@ function specials_display_callback( $post ) {
     include 'custom-fields-specials-form.php';
     wp_nonce_field( basename( __FILE__ ), 'specials_meta_box_nonce' );
 }
-
 
 /**
  * Save the meta box content

@@ -1,8 +1,8 @@
 <?php
 
-// $path = plugin_dir_path(dirname( __FILE__ ));
-// include $path . 'functions-meta-box.php';
-// echo $path;
+$path = plugin_dir_path(dirname( __FILE__ ));
+include $path . 'functions-meta-box.php';
+
 /**
  * Register the meta box
  */
