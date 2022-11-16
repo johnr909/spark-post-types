@@ -6,6 +6,20 @@ namespace sparkd;
  * Register the meta box
  */
 
+// return if it's autosave
+function is_autosave() { 
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+}
+
+// check if the user can edit posts
+function current_user_can( $post_id ) {
+  if (!current_user_can( 'edit_post', $post_id ) ) {
+    return;
+  }
+}
+
 function register_review_meta_boxes() {
     add_meta_box(
         'reviewer_data_metabox', 
@@ -21,7 +35,9 @@ add_action('add_meta_boxes', '\sparkd\register_review_meta_boxes');
  * Meta box display callback
  * @param WP_Post $post Current post object
  */
+
 function display_callback( $post ) {
+    $nonce = 'review_meta_box_nonce';
     include 'custom-fields-review-form.php';
     wp_nonce_field( basename( __FILE__ ), 'review_meta_box_nonce' );
 }
@@ -31,19 +47,21 @@ function display_callback( $post ) {
  * @param int $post_id Post ID
  */
 function save_review_meta_box( $post_id ) {
-
+$nonce = 'review_meta_box_nonce';
     // Return if it's autosave
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
         return;
     }
+    // is_autosave();
 
     // Check the user's permissions
     if ( !current_user_can( 'edit_post', $post_id ) ) {
           return;
     }
+    // current_user_can( $post_id );
 
     // Verify meta box nonce
-    if ( !isset( $_POST['review_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['review_meta_box_nonce'], basename( __FILE__ ) ) ) {
+    if ( !isset( $_POST[$nonce] ) || !wp_verify_nonce( $_POST[$nonce], basename( __FILE__ ) ) ) {
         return;
     }
 
