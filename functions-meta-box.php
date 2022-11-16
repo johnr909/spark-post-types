@@ -1,76 +1,39 @@
 <?php
 
-$post_id; // globally available, yeah!
-$post; // globally available, yeah!
-
-// $meta_box_name 'reviewer_data_metabox';
-// $meta_box_ui_name = 'Review Data';
-// $meta_box_callback_name = '\sparkd\review_display_callback';
-// $meta_box_slug = 'reviews';
-
-// function register_meta_box() {
-//     add_meta_box(
-//         $meta_box_name, 
-//         __( 'Reviewer Data'), 
-//         '\sparkd\review_display_callback', 
-//         'reviews','normal', 'high'
-//     );
-// }
-
-// function display_callback( $post, $form, $nonce ) {
-//   include $form;
-//   wp_nonce_field( basename( __FILE__ ), $nonce );
-// }
-// 
-$form = 'custom-fields-review-form.php';
-  $nonce = 'review_meta_box_nonce';
-  $post_nonce = $_POST['review_meta_box_nonce'];
-  $user_cap = 'edit_posts';
-  $fields = [
+$nonce = 'review_meta_box_nonce';
+$fields = [
         'spark_reviewer',
         'spark_review_status',
         'spark_review_icon',
     ];
 
-// set the nonce field
-function set_nonce_field() {
-  $nonce_field = wp_nonce_field( basename( __FILE__ ), $nonce );
-  return $nonce_field;
-}
+function save_meta_box( $post_id ) {
 
-// return true if it's autosave
-function is_autosave() { 
+    // Return if it's autosave
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-        return true;
+      return;
     }
-}
 
-// return true if the user can edit posts
-function current_user_can( $post_id ) {
-  if (!current_user_can( 'edit_post', $post_id ) ) {
-    return true;
-  }
-}
-
-// return true if the nonce is verified
-function verify_meta_box( $nonce ) {
-  if ( !isset( $_POST[$nonce]) || !wp_verify_nonce( $_POST[$nonce], basename( __FILE__ ) ) ) {
-        return true;
+    // Check the user's permissions
+    if (!current_user_can( 'edit_post', $post_id ) ){
+      return;
     }
-}
 
-// return true if it's a revision
-function is_revison( $post_id) {
-  if ( $parent_id = wp_is_post_revision( $post_id ) ) {
+    // Verify meta box nonce
+    if (!isset( $_POST[$nonce]) || !wp_verify_nonce( $_POST[$nonce], basename( __FILE__ ) ) ) {
+      return;
+    }
+
+    // Check if it's a revision
+    if ( $parent_id = wp_is_post_revision( $post_id ) ) {
         $post_id = $parent_id;
-        return true;
     }
-}
 
-function sanitize_meta_box_fields( $fields ) {
-  foreach ( $fields as $field ) {
-    if ( array_key_exists( $field, $_POST )) {
-        update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
-    }
-  }
+    // Run the update with sanitized $_POST data
+    foreach ( $fields as $field ) {
+        if ( array_key_exists( $field, $_POST ) ) {
+            update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
+        }
+     }
+     
 }
