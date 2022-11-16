@@ -1,6 +1,8 @@
 <?php
 
-namespace sparkd;
+$path = plugin_dir_path(dirname( __FILE__ ));
+include $path . 'functions-meta-box.php';
+
 /**
  * Register the meta box
  */
@@ -9,12 +11,12 @@ function register_specials_meta_boxes() {
     add_meta_box(
         'specials_data_metabox', 
         __( 'Specials Data'), 
-        '\sparkd\specials_display_callback', 
+        'specials_display_callback', 
         'specials','normal', 'high'
     );
 }
 
-add_action( 'add_meta_boxes', '\sparkd\register_specials_meta_boxes' );
+add_action( 'add_meta_boxes', 'register_specials_meta_boxes' );
 
 /**
  * Meta box display callback
@@ -32,25 +34,20 @@ function specials_display_callback( $post ) {
  */
 function save_specials_meta_box( $post_id ) {
 
-	// Return if it's autosave
-    if (defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-    	return;
-    }
+	// return if it's autosave
+    is_autosave();
 
-    // Check the user's permissions
+    // check the user's permissions
     if (!current_user_can( 'edit_post', $post_id ) ) {
-	  return;
-	}
-
-	// Verify meta box nonce
-	if (!isset( $_POST['specials_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['specials_meta_box_nonce'], basename( __FILE__ ) ) ) {
-		return;
-	}
-
-	// Check if it's a revision
-    if ( $parent_id = wp_is_post_revision( $post_id ) ) {
-        $post_id = $parent_id;
+        return;
     }
+
+    // verify the nonce, return if you can't
+    $nonce = 'specials_meta_box_nonce';
+    verify_meta_box( $nonce ); 
+
+	// check if it's a revision and if so set the $post_id = $parent_id;
+    is_revision( $post_id );
 
     $fields = [
         'specialsTitle',
@@ -66,4 +63,4 @@ function save_specials_meta_box( $post_id ) {
      }
 }
 
-add_action( 'save_post', '\sparkd\save_specials_meta_box' );
+add_action( 'save_post', 'save_specials_meta_box' );
