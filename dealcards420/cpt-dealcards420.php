@@ -35,6 +35,9 @@ if ( ! function_exists( 'post_type_deals420card' ) ) {
 			'rewrite' => array( 'slug' => 'deal420cards' ),
 			'has_archive' => true,
 			'hierarchical' => false,
+			'no_found_rows' => true,
+			'update_post_meta_cache' => false, 
+			'update_post_term_cache' => false, 
 			'menu_icon' => 'dashicons-money',
 		);
 

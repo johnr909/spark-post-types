@@ -19,6 +19,12 @@ require $dir . '/spark-post-types/specials/cpt-specials.php';
 require $dir . '/spark-post-types/specials/custom-metabox-specials.php';
 require $dir . '/spark-post-types/specials/specials-options-page.php';
 
+require $dir . '/spark-post-types/dealcards420/cpt-dealcards420.php';
+require $dir . '/spark-post-types/dealcards420/custom-metabox-dealscards420.php';
+
+require $dir . '/spark-post-types/vendorcards420/cpt-vendorcards420.php';
+require $dir . '/spark-post-types/vendorcards420/custom-metabox-vendorcards420.php';
+
 // for styling the specials options & CPT admin pages
 function admin_styles() {
   wp_enqueue_style('admin-styles', plugin_dir_url(__FILE__) . 'css/admin.css');

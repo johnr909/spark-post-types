@@ -10,22 +10,22 @@ if ( ! function_exists( 'post_type_reviews' ) ) {
 			'title', // post title
 			'thumbnail', // featured images
 			'post-formats', // post formats
+			'editor' // the editor window
 		);
 
 		$labels = array(
-		'name' => _x( 'reviews', 'plural' ),
-		'singular_name' => _x( 'review', 'singular' ),
-		'menu_name' => _x( 'Reviews', 'admin menu' ), 
-		'name_admin_bar' => _x( 'Reviews', 'admin bar' ),
-		'add_new' => _x ( 'Add New', 'add new' ),
-		'add_new_item' => __( 'Add New Review' ),
-		'new_item' => __( 'New Reviews' ),
-		'edit_item' => __ ( 'Edit Reviews' ),
-		'view_item' => __( 'View Reviews' ),
-		'all_items' => __( 'All Reviews' ),
-		'search_items' => __( 'Search Reviews' ),
-		'not_found' => __('No Reviews found.'),	
-		'menu_icon'   => 'dashicons-products',
+			'name' => _x( 'reviews', 'plural' ),
+			'singular_name' => _x( 'review', 'singular' ),
+			'menu_name' => _x( 'Reviews', 'admin menu' ), 
+			'name_admin_bar' => _x( 'Reviews', 'admin bar' ),
+			'add_new' => _x ( 'Add New', 'add new' ),
+			'add_new_item' => __( 'Add New Review' ),
+			'new_item' => __( 'New Reviews' ),
+			'edit_item' => __ ( 'Edit Reviews' ),
+			'view_item' => __( 'View Reviews' ),
+			'all_items' => __( 'All Reviews' ),
+			'search_items' => __( 'Search Reviews' ),
+			'not_found' => __('No Reviews found.'),	
 		);
 
 		$args = array(
@@ -37,6 +37,9 @@ if ( ! function_exists( 'post_type_reviews' ) ) {
 			'has_archive' => true,
 			'hierarchical' => false,
 			'menu_icon' => 'dashicons-heart',
+			'no_found_rows' => true,
+			'update_post_meta_cache' => false, 
+			'update_post_term_cache' => false, 
 		);
 
 		register_post_type( 'reviews', $args );

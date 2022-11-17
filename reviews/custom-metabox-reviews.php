@@ -1,4 +1,8 @@
 <?php
+
+$path = plugin_dir_path(dirname( __FILE__ ));
+include $path . 'meta-box-functions.php';
+
 /**
  * Register the meta box
  */
@@ -30,25 +34,20 @@ function review_display_callback($post) {
  */
 function save_review_meta_box( $post_id ) {
 
-    // Return if it's autosave
-    if (defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-        return;
-    }
+    // return if it's autosave
+    is_autosave();
 
-    // Check the user's permissions
+    // check the user's permissions
     if (!current_user_can( 'edit_post', $post_id ) ) {
         return;
     }
+    
+    // verify the nonce, return if you can't
+    $nonce = 'review_meta_box_nonce';
+    verify_meta_box( $nonce );
 
-    // Verify meta box nonce
-    if ( !isset( $_POST['review_meta_box_nonce']) || !wp_verify_nonce( $_POST['review_meta_box_nonce'], basename( __FILE__ ) ) ) {
-        return;
-    }
-
-    // Check if it's a revision
-    if ( $parent_id = wp_is_post_revision( $post_id ) ) {
-        $post_id = $parent_id;
-    }
+    // check if it's a revision and if so set the $post_id = $parent_id;
+    is_revision( $post_id );
 
     $fields = [
         'spark_reviewer',
@@ -56,7 +55,7 @@ function save_review_meta_box( $post_id ) {
         'spark_review_icon',
     ];
 
-    // Run the update with sanitized $_POST data
+    // run the update with sanitized $_POST data
     foreach ( $fields as $field ) {
         if ( array_key_exists( $field, $_POST )) {
             update_post_meta( $post_id, $field, sanitize_text_field( $_POST[$field] ) );
