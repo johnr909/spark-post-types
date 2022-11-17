@@ -26,7 +26,6 @@ if ( ! function_exists( 'post_type_reviews' ) ) {
 			'all_items' => __( 'All Reviews' ),
 			'search_items' => __( 'Search Reviews' ),
 			'not_found' => __('No Reviews found.'),	
-			'menu_icon' => 'dashicons-products',
 		);
 
 		$args = array(
