@@ -27,7 +27,6 @@ if ( ! function_exists( 'post_type_specials' ) ) {
 		'all_items' => __( 'All Specials' ),
 		'search_items' => __( 'Search Specials' ),
 		'not_found' => __( 'No Specials found.' ),	
-		'menu_icon' => 'dashicons-money-alt',
 		);
 
 		$args = array(
@@ -41,6 +40,7 @@ if ( ! function_exists( 'post_type_specials' ) ) {
 			'no_found_rows' => true,
 			'update_post_meta_cache' => false, 
 			'update_post_term_cache' => false, 
+			'menu_icon' => 'dashicons-money-alt',
 		);
 
 		register_post_type( 'specials', $args );

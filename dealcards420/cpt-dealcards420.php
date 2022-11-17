@@ -25,7 +25,6 @@ if ( ! function_exists( 'post_type_deals420card' ) ) {
 		'all_items' => __( 'All Deal 420 Cards' ),
 		'search_items' => __( 'Search Deal 420 Cards' ),
 		'not_found' => __( 'No Deal 420 Cards found.' ),	
-		'menu_icon' => 'dashicons-money',
 		);
 
 		$args = array(
@@ -39,6 +38,7 @@ if ( ! function_exists( 'post_type_deals420card' ) ) {
 			'no_found_rows' => true,
 			'update_post_meta_cache' => false, 
 			'update_post_term_cache' => false, 
+			'menu_icon' => 'dashicons-money',
 		);
 
 		register_post_type( 'deals420cards', $args );
