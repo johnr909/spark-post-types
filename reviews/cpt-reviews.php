@@ -10,6 +10,7 @@ if ( ! function_exists( 'post_type_reviews' ) ) {
 			'title', // post title
 			'thumbnail', // featured images
 			'post-formats', // post formats
+			'editor' // the editor window
 		);
 
 		$labels = array(
